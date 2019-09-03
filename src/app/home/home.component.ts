@@ -23,7 +23,14 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.loadAllUsers();
-        this.menuService.GetMenu("1", "QJ", "1");
+        this.menuService.GetMenu("1", "QJ", "1").pipe(first())
+        .subscribe(
+            data => {
+                console.log(data);
+            },
+            error => {
+                console.log("Menu API Error");
+            });
     }
 
     ngOnDestroy() {
