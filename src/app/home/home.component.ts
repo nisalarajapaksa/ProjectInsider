@@ -9,7 +9,7 @@ import { UserService, AuthenticationService, MenuService } from '@app/_services'
 export class HomeComponent implements OnInit, OnDestroy {
     currentUser: User;
     currentUserSubscription: Subscription;
-    users: User[] = [];
+    user: User;
 
     constructor(
         private authenticationService: AuthenticationService,
@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.loadAllUsers();
+        console.log(this.user);
         this.menuService.GetMenu("1", "QJ", "1").pipe(first())
         .subscribe(
             data => {
@@ -39,14 +40,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     deleteUser(id: number) {
-        this.userService.delete(id).pipe(first()).subscribe(() => {
-            this.loadAllUsers()
-        });
+        // this.userService.delete(id).pipe(first()).subscribe(() => {
+        //     this.loadAllUsers()
+        // });
     }
 
     private loadAllUsers() {
-        this.userService.getAll().pipe(first()).subscribe(users => {
-            this.users = users;
-        });
+        this.user = this.userService.currentUserValue;
     }
 }

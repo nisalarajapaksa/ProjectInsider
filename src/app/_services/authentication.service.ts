@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { User } from '@app/_models';
-import { ENDPOINTS } from '../_constants/endpoints'; //should get from @
+import { ENDPOINTS } from '../_constants/endpoints'; // TODO: User @
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {

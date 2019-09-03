@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 
 import { environment } from '@environments/environment';
 import { Menu, MenuRequest } from '@app/_models';
+import { ENDPOINTS } from '../_constants/endpoints'; // TODO: User @
 
 @Injectable({ providedIn: 'root' })
 export class MenuService {
@@ -21,20 +22,16 @@ export class MenuService {
     }
 
     GetMenu(userID: string, key: string, companyID: string) {
-        console.log("BEFOR...");
         let menuRequest = new MenuRequest();
         menuRequest.CompanyID = companyID;
         menuRequest.Key = key;
         menuRequest.UserID = userID;
         let menuRequestString = JSON.stringify(menuRequest);
         //JSON.parse(menuRequestString)
-        return this.http.post<any>(`http://35.200.254.194/PIC.V2/Services/PIC.Services/PIController.svc/BMGetUserMenuModules2`, 
+        return this.http.post<any>(ENDPOINTS.menu, 
         {"CompanyID": companyID, "Key": key, "UserID": userID})
             .pipe(map(menu => {
-                console.log("POST IN...");
                 if (menu) {
-                    console.log("Menu IN...");
-                    console.log(menu);
                     localStorage.setItem('currentMenu', JSON.stringify(menu));
                     this.currentMenuSubject.next(menu);
                 }
