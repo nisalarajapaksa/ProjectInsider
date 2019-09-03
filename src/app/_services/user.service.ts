@@ -1,30 +1,41 @@
 ﻿import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import { environment } from '@environments/environment';
 import { User } from '@app/_models';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-    constructor(private http: HttpClient) { }
+    private currentUserSubject: BehaviorSubject<User>;
+    public currentUser: Observable<User>;
 
-    getAll() {
-        return this.http.get<User[]>(`${environment.apiUrl}/users`);
+    constructor() {
+        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+        this.currentUser = this.currentUserSubject.asObservable();
     }
 
-    getById(id: number) {
-        return this.http.get(`${environment.apiUrl}/users/${id}`);
+    public get currentUserValue(): User {
+        return this.currentUserSubject.value;
     }
 
-    register(user: User) {
-        return this.http.post(`${environment.apiUrl}/users/register`, user);
-    }
+    // getAll() {
+    //     return this.http.get<User[]>(`${environment.apiUrl}/users`);
+    // }
 
-    update(user: User) {
-        return this.http.put(`${environment.apiUrl}/users/${user.id}`, user);
-    }
+    // getById(id: number) {
+    //     return this.http.get(`${environment.apiUrl}/users/${id}`);
+    // }
 
-    delete(id: number) {
-        return this.http.delete(`${environment.apiUrl}/users/${id}`);
-    }
+    // register(user: User) {
+    //     return this.http.post(`${environment.apiUrl}/users/register`, user);
+    // }
+
+    // update(user: User) {
+    //     return this.http.put(`${environment.apiUrl}/users/${user.id}`, user);
+    // }
+
+    // delete(id: number) {
+    //     return this.http.delete(`${environment.apiUrl}/users/${id}`);
+    // }
 }
