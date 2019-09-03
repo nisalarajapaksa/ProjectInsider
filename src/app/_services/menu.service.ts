@@ -27,8 +27,9 @@ export class MenuService {
         menuRequest.Key = key;
         menuRequest.UserID = userID;
         let menuRequestString = JSON.stringify(menuRequest);
+        //JSON.parse(menuRequestString)
         return this.http.post<any>(`http://35.200.254.194/PIC.V2/Services/PIC.Services/PIController.svc/BMGetUserMenuModules2`, 
-        JSON.parse(menuRequestString))
+        {"CompanyID": companyID, "Key": key, "UserID": userID})
             .pipe(map(menu => {
                 console.log("POST IN...");
                 if (menu) {
