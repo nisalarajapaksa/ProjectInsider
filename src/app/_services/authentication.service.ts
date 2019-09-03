@@ -20,9 +20,15 @@ export class AuthenticationService {
         return this.currentUserSubject.value;
     }
 
-    login(username: string, password: string) {
-        console.log('ENDPOINTS.login', ENDPOINTS.login)
-        return this.http.post<any>(ENDPOINTS.login, { username, password })
+    login(username: string, password: string, companycode: string) {
+        return this.http.post<any>(ENDPOINTS.login, { 
+            "AppAccessSession": {
+                "AppAccessUID": username,
+                "CompanyCode": companycode,
+                "AppAccessPWD": password,
+                "ApplicationType": 3
+            }
+        })
             .pipe(map(user => {
                 console.log(user)
                 // login successful if there's a jwt token in the response
