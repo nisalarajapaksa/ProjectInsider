@@ -10,6 +10,7 @@ import { AlertComponent } from './_components';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
+import { ProfileComponent } from './profile';
 
 @NgModule({
     imports: [
@@ -22,7 +23,8 @@ import { LoginComponent } from './login';
         AppComponent,
         AlertComponent,
         HomeComponent,
-        LoginComponent
+        LoginComponent,
+        ProfileComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
