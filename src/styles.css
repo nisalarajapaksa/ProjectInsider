@@ -25,6 +25,10 @@
     /* border-radius: 5px; */
     
 }
+.middle-align{
+margin: 0 auto;
+z-index: 3;
+}
 .logo-wrap img{
     margin: 0 auto;
     margin-bottom: 30px;
@@ -55,6 +59,8 @@
 .form-group label{
     font-size: 0.9rem;
     color: #6b6b6b;
+    margin-bottom: 0;
+
 }
 .text-1 {
     font-size: 25px;
@@ -62,4 +68,12 @@
     color: #03264e;
     margin-bottom: 5px;
     font-weight: 600;
+}
+.btm-bg{
+    background: #075bf3;
+    height: 300px;
+    position: absolute;
+    bottom: 0;
+    z-index: 0;
+    width: 100%;
 }
