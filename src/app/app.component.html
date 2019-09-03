@@ -7,12 +7,18 @@
 </nav>
 
 <!-- main app container -->
-<div class="jumbotron">
+<div class="jumbotron login-wrapper">
+
     <div class="container">
-        <div class="row">
-            <div class="col-sm-6 offset-sm-3">
-                <alert></alert>
-                <router-outlet></router-outlet>
+        <div>
+            <div class="row logo-wrap">
+                <img src="../assets/pms.png" width="267" height="150">
+            </div>
+            <div class="row">
+                <div class="inner-login">
+                    <alert></alert>
+                    <router-outlet></router-outlet>
+                </div>
             </div>
         </div>
     </div>
