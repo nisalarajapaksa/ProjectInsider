@@ -1,4 +1,4 @@
-export class menu {
+export class Menu {
     Action?: any;
     AppAccessID: number;
     AppAccessSessionID: number;
