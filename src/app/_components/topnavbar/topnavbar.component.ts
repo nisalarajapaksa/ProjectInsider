@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+// import { BehaviorSubject, Observable } from 'rxjs';
 
 import { User, Menu, MenuResponseObject } from '@app/_models';
 import { AuthenticationService, MenuService } from '@app/_services';
@@ -23,7 +23,7 @@ export class TopNavBarComponent implements OnInit {
         private router: Router,
         private authenticationService: AuthenticationService,
         private menuService: MenuService
-    ) { 
+    ) {
         this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
             this.currentUser = user;
         });
@@ -32,7 +32,7 @@ export class TopNavBarComponent implements OnInit {
 
     ngOnInit() {
         this.loadMenu();
-        if(this.menu == null){
+        if (this.menu == null) {
             this.menuService.getMenu(this.currentUser.AppAccessID.toString(), this.currentUser.Key.toString(), this.currentUser.CompanyID.toString()).pipe(first())
                 .subscribe(
                     data => {
@@ -68,5 +68,9 @@ export class TopNavBarComponent implements OnInit {
         this.authenticationService.logout();
         this.menuService.clearMenu()
         this.router.navigate(['/login']);
+    }
+
+    navigateTo(item) {
+        this.router.navigate(['/dynamic'], { queryParams: { moduleId: item.ModuleId } });
     }
 }

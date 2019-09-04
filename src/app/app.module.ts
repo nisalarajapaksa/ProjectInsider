@@ -11,6 +11,7 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { ProfileComponent } from './profile';
+import { DynamicPageComponent } from './dynamic-page';
 
 @NgModule({
     imports: [
@@ -26,7 +27,8 @@ import { ProfileComponent } from './profile';
         HomeComponent,
         LoginComponent,
         ProfileComponent,
-        MenuItemComponent
+		DynamicPageComponent,
+		MenuItemComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
