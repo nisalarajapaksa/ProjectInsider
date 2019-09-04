@@ -1,54 +1,7 @@
-﻿<!-- nav -->
-
-<nav class="navbar navbar-expand navbar-dark bg-dark d-flex flex-row flex-column align-items-start bg-gradient" *ngIf="currentUser">
-    <div class="d-flex full-width">
-        <div class="brand-logo">
-            <label>3slogics Pvt. Ltd.</label>
-        </div>
-        <div class="navbar-nav ml-5">
-             <a class="nav-item nav-link text-white" routerLink="/">CRM</a>
-           
-        </div>
-        <div class="dropdown">
-                <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-link text-white" data-target="#">
-                    Project <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-                  <li><a href="#">Business Relation</a></li>
-                  <li><a href="#">Lead & Opportunity</a></li>
-                  
-                  <li class="dropdown-submenu">
-                    <a tabindex="-1" href="#">Activities</a>
-                    <ul class="dropdown-menu">
-                      <li><a tabindex="-1" href="#">Second level</a></li>
-                      <li class="dropdown-submenu">
-                        <a href="#">Even More..</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">3rd level</a></li>
-                            <li><a href="#">3rd level</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="#">Second level</a></li>
-                      <li><a href="#">Second level</a></li>
-                    </ul>
-                  </li>
-                </ul>
-            </div>
-            <div class="d-flex item-right">
-                    <a class="nav-item nav-link text-white" (click)="logout()">Logout</a>
-            </div>
-    </div>
-</nav>
-<div class="jumbotron login-wrapper">
+﻿<div class="jumbotron login-wrapper">
     <div class="container">
-        <h1>Hi {{currentUser.firstName}}!</h1>
-        <p>You're logged in with Angular 7!!</p>
-        <h3>All registered users:</h3>
-        <ul>
-            <li *ngFor="let user of users">
-                {{user.username}} ({{user.firstName}} {{user.lastName}})
-                - <a (click)="deleteUser(user.id)" class="text-danger">Delete</a>
-            </li>
-        </ul>
+        <h1>Hi {{currentUser.AppAccessDisplayName}}!</h1>
+        <br>
+        <h3>Welcome to the Project Insider</h3>
     </div>
 </div>
