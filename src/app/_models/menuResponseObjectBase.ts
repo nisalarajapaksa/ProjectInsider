@@ -1,4 +1,4 @@
-export class menuResponseObjectBase{
+export class MenuResponseObjectBase{
     Action?: any;
     AppAccessID: number;
     AppAccessSessionID: number;

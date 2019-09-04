@@ -5,14 +5,45 @@
         <div class="brand-logo">
             <label>3slogics Pvt. Ltd.</label>
         </div>
-        <div class="navbar-nav ml-5">
+        <ng-container *ngFor="let mainItem of menu['responseObjectMod'];">
+                <div class="dropdown">
+                    <a id="{{ 'dLabel-' + mainItem['ModuleName'] }}" role="button" data-toggle="dropdown" class="btn btn-link text-white" data-target="#">
+                            {{mainItem['ModuleName']}} <span class="caret"></span>
+                    </a>
+                    <ul *ngIf="filterMenuByModule(mainItem['ModuleId']).length > 0" class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                        <ng-container *ngFor="let menuItem of filterMenuByModule(mainItem['ModuleId']);">
+                                <li *ngIf="menuItem['UnderMenuId'] == 0 && filterMenuByUnderMenu(menuItem['MenuId']).length == 0">
+                                    <a href="#">{{ menuItem['MenuName'] }}</a>
+                                </li>
+                                <li *ngIf="menuItem['UnderMenuId'] == 0 && filterMenuByUnderMenu(menuItem['MenuId']).length > 0" class="dropdown-submenu">
+                                    <a href="#">{{ menuItem['MenuName'] }}</a>
+                                    
+                                    <ul class="dropdown-menu">
+                                        <ng-container *ngFor="let subItem of filterMenuByUnderMenu(menuItem['MenuId']);">
+                                            <li>
+                                                <a href="#">{{subItem['MenuName']}}</a>
+                                            </li>
+                                        </ng-container>
+                                    </ul>
+                                    <!-- <menu-item #menu [subMenuItems]="filterMenuByModule(mainItem['ModuleId'])" [superId]="menuItem['MenuId']"></menu-item> -->
+                                </li>
+                        </ng-container>
+                    </ul>
+                </div>
+                <!-- <menu-item [menuItems]="filterMenuByModule(mainItem['ModuleId'])" [superId]="0"></menu-item> -->
+                <!-- <ng-container *ngFor="let subItem of filterMenuByModule(mainItem['ModuleId']);"> -->
+                        <!-- <ng-container *ngIf="mainItem['ModuleId'] == subItem['ModuleId']">
+                          {{mainItem['ModuleId']}} {{subItem['MenuId']}} {{subItem['UnderMenuId']}}
+                          <menu-item [menuItems]="menu['responseObject']"></menu-item>
+                        <br/>
+                        </ng-container>   -->
+                        <!-- {{mainItem['ModuleId']}} {{subItem['MenuId']}} {{subItem['UnderMenuId']}} -->
+                <!-- </ng-container> -->
+        </ng-container>
+        <!-- <div class="dropdown">
             <a class="nav-item nav-link text-white" routerLink="/">CRM</a>
-
         </div>
         <div class="dropdown">
-            <!-- <a *ngFor="let item of menu['responseObjectMod']">
-                Test <span class="caret"></span>
-            </a> -->
             <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-link text-white" data-target="#">
                 Project <span class="caret"></span>
             </a>
@@ -36,7 +67,7 @@
                     </ul>
                 </li>
             </ul>
-        </div>
+        </div> -->
         <div class="d-flex item-right">
             <input class="form-control" type="text" placeholder="Search Menu">
             <a class="nav-item nav-link text-white" (click)="logout()">Logout</a>

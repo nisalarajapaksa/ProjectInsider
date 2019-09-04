@@ -4,7 +4,7 @@ import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { User, Menu } from '@app/_models';
+import { User, Menu, MenuResponseObject } from '@app/_models';
 import { AuthenticationService, MenuService } from '@app/_services';
 
 @Component({
@@ -43,8 +43,21 @@ export class TopNavBarComponent implements OnInit {
                         console.log("Menu API Error");
                     });
         }
-        
-        
+        console.log(this.menu);
+    }
+
+    public filterMenuByModule(moduleId:number):MenuResponseObject[]{
+        var filteredArray = this.menu.responseObject.filter(function(arrayItem) {
+            return arrayItem.ModuleId == moduleId;
+        });
+        return filteredArray;
+    }
+
+    public filterMenuByUnderMenu(underMenuId:number):MenuResponseObject[]{
+        var filteredArray = this.menu.responseObject.filter(function(arrayItem) {
+            return arrayItem.UnderMenuId == underMenuId;
+        });
+        return filteredArray;
     }
 
     private loadMenu() {

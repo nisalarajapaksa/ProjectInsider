@@ -1,6 +1,6 @@
-import { menuResponseObjectBase } from './menuResponseObjectBase'
+import { MenuResponseObjectBase } from './menuResponseObjectBase'
 
-export class menuResponseObjectMod extends menuResponseObjectBase{
+export class MenuResponseObjectMod extends MenuResponseObjectBase{
     AppUrl?: any;
     ChildCount: number;
     DisplayName?: any;

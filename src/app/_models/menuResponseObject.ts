@@ -1,6 +1,7 @@
-import { menuResponseObjectBase } from './menuResponseObjectBase'
+import { MenuResponseObjectBase } from './menuResponseObjectBase'
 
-export class menuResponseObject extends menuResponseObjectBase{
+export class MenuResponseObject extends MenuResponseObjectBase{
     ModuleList?: any;
     ModuleName: string;
+    UnderMenuId: number;
 }

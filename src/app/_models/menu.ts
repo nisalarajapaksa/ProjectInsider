@@ -1,9 +1,9 @@
-import { menuResponseObject } from './menuResponseObject'
-import { menuResponseObjectMod } from './menuResponseObjectMod'
+import { MenuResponseObject } from './menuResponseObject'
+import { MenuResponseObjectMod } from './menuResponseObjectMod'
 
 export class Menu {
     responseCode: string;
     responseMessage: String;
-    responseObject: menuResponseObject[];
-    responseObjectMod: menuResponseObjectMod[];
+    responseObject: MenuResponseObject[];
+    responseObjectMod: MenuResponseObjectMod[];
 }
