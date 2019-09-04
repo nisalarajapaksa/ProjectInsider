@@ -5,9 +5,8 @@
         <div class="brand-logo">
             <label>3slogics Pvt. Ltd.</label>
         </div>
-        <div class="navbar-nav ml-5">
-            <a class="nav-item nav-link text-white" routerLink="/">CRM</a>
-
+        <div *ngFor="let menuItem of menu['responseObjectMod']; let i = index" [class]="i == 0 ? 'navbar-nav ml-5' : 'navbar-nav'">
+            <a class="nav-item nav-link text-white" routerLink="/">{{ menuItem.ModuleName }}</a>
         </div>
         <div class="dropdown">
             <!-- <a *ngFor="let item of menu['responseObjectMod']">
