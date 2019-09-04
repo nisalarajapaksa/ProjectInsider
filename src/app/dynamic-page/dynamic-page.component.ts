@@ -32,6 +32,7 @@ export class DynamicPageComponent implements OnInit {
         this.menu['responseObjectMod'].map(item => {
             if (item.ModuleId == this.moduleId) {
                 this.pageTitle = item.ModuleName
+                return 
             }
         })
     }
