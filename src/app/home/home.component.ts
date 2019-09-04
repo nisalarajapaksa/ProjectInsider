@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.loadAllUsers();
-        console.log(this.user);
+        // console.log(this.user);
         //this.menuService.GetMenu(this.user.AppAccessID.toString(), this.user.Key.toString(), this.user.CompanyID.toString()).pipe(first())
         this.menuService.GetMenu("1", "QJ", "1").pipe(first())
         .subscribe(
