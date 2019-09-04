@@ -25,20 +25,12 @@
                                             </li>
                                         </ng-container>
                                     </ul>
+                                    <!-- TODO: Uncomment to Extend for multiple -->
                                     <!-- <menu-item #menu [subMenuItems]="filterMenuByModule(mainItem['ModuleId'])" [superId]="menuItem['MenuId']"></menu-item> -->
                                 </li>
                         </ng-container>
                     </ul>
                 </div>
-                <!-- <menu-item [menuItems]="filterMenuByModule(mainItem['ModuleId'])" [superId]="0"></menu-item> -->
-                <!-- <ng-container *ngFor="let subItem of filterMenuByModule(mainItem['ModuleId']);"> -->
-                        <!-- <ng-container *ngIf="mainItem['ModuleId'] == subItem['ModuleId']">
-                          {{mainItem['ModuleId']}} {{subItem['MenuId']}} {{subItem['UnderMenuId']}}
-                          <menu-item [menuItems]="menu['responseObject']"></menu-item>
-                        <br/>
-                        </ng-container>   -->
-                        <!-- {{mainItem['ModuleId']}} {{subItem['MenuId']}} {{subItem['UnderMenuId']}} -->
-                <!-- </ng-container> -->
         </ng-container>
         <!-- <div class="dropdown">
             <a class="nav-item nav-link text-white" routerLink="/">CRM</a>
