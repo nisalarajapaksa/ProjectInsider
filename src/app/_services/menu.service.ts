@@ -18,7 +18,7 @@ export class MenuService {
     }
 
     public get currentMenuValue(): Menu {
-        return this.currentMenuSubject.value;
+        return this.currentMenuSubject.getValue();
     }
 
     GetMenu(userID: string, key: string, companyID: string) {
