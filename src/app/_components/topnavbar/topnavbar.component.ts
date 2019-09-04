@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 
 import { User } from '@app/_models';
-import { AuthenticationService } from '@app/_services';
+import { AuthenticationService, MenuService } from '@app/_services';
 
 @Component({
     selector: 'topnavbar',
@@ -20,6 +20,7 @@ export class TopNavBarComponent implements OnInit {
     constructor(
         private router: Router,
         private authenticationService: AuthenticationService,
+        private menuService: MenuService
     ) { 
         this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
             this.currentUser = user;
@@ -33,6 +34,7 @@ export class TopNavBarComponent implements OnInit {
 
     logout() {
         this.authenticationService.logout();
+        this.menuService.clearMenu()
         this.router.navigate(['/login']);
     }
 }
