@@ -2,11 +2,11 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark d-flex flex-row flex-column align-items-start bg-gradient"
     *ngIf="currentUser">
     <div class="d-flex full-width">
-        <div class="brand-logo">
+        <div class="brand-logo" routerLink="/">
             <label>3slogics Pvt. Ltd.</label>
         </div>
         <div *ngFor="let menuItem of menu['responseObjectMod']; let i = index" [class]="i == 0 ? 'navbar-nav ml-5' : 'navbar-nav'">
-            <a class="nav-item nav-link text-white" routerLink="/">{{ menuItem.ModuleName }}</a>
+            <a class="nav-item nav-link text-white" (click)="navigateTo(menuItem)">{{ menuItem.ModuleName }}</a>
         </div>
         <div class="dropdown">
             <!-- <a *ngFor="let item of menu['responseObjectMod']">

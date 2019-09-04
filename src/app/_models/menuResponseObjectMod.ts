@@ -17,4 +17,5 @@ export class menuResponseObjectMod extends menuResponseObjectBase{
     Url: string;
     UserId: number;
     WinUrl?: any; 
+    ModuleName?: string;
 }

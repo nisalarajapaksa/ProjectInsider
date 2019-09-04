@@ -1,44 +1,37 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { first } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Subscription, Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { MenuService } from '@app/_services';
 
-import { User } from '@app/_models';
-import { UserService, AuthenticationService, MenuService } from '@app/_services';
+import { User, Menu } from '@app/_models';
 
 @Component({ templateUrl: 'dynamic-page.component.html' })
-export class DynamicPageComponent implements OnInit, OnDestroy {
+export class DynamicPageComponent implements OnInit, OnChanges {
     currentUser: User;
     currentUserSubscription: Subscription;
+    menu: Menu;
+    pageTitle: String;
+    moduleId: Number;
 
     constructor(
-        private router: Router,
-        private authenticationService: AuthenticationService,
-        private userService: UserService,
+        private route: ActivatedRoute,
         private menuService: MenuService
     ) {
-        this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
-            this.currentUser = user;
+        this.route.queryParams.subscribe(params => {
+            this.moduleId = params.moduleId
         });
-        this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     }
 
     ngOnInit() {
+        this.menu = this.menuService.currentMenuValue as Menu;
+        this.menu['responseObjectMod'].map(item => {
+            if (item.ModuleId == this.moduleId) {
+                this.pageTitle = item.ModuleName
+            }
+        })
     }
 
-    ngOnDestroy() {
-        // unsubscribe to ensure no memory leaks
-        this.currentUserSubscription.unsubscribe();
-    }
-
-    deleteUser(id: number) {
-        // this.userService.delete(id).pipe(first()).subscribe(() => {
-        //     this.loadAllUsers()
-        // });
-    }
-
-    logout() {
-        this.authenticationService.logout();
-        this.router.navigate(['/login']);
+    ngOnChanges(changes: SimpleChanges) {
+        console.log(changes)
     }
 }
