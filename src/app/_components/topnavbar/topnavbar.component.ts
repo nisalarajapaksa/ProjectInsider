@@ -44,7 +44,7 @@ export class TopNavBarComponent implements OnInit {
                     });
         }
         
-        
+        console.log('this.menu ', this.menu)
     }
 
     private loadMenu() {
