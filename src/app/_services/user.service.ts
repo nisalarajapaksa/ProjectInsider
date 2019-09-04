@@ -16,7 +16,7 @@ export class UserService {
     }
 
     public get currentUserValue(): User {
-        return this.currentUserSubject.value;
+        return this.currentUserSubject.getValue();
     }
 
     // getAll() {

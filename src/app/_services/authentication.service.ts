@@ -34,11 +34,11 @@ export class AuthenticationService {
                 // login successful if there's a jwt token in the response
                 if (user) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                    this.currentUserSubject.next(user);
+                    localStorage.setItem('currentUser', JSON.stringify(user['responseObject'][0]));
+                    this.currentUserSubject.next(user['responseObject'][0]);
                 }
 
-                return user;
+                return user['responseObject'][0];
             }));
     }
 
