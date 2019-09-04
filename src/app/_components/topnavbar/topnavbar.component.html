@@ -13,7 +13,7 @@
                     <ul *ngIf="filterMenuByModule(mainItem['ModuleId']).length > 0" class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
                         <ng-container *ngFor="let menuItem of filterMenuByModule(mainItem['ModuleId']);">
                                 <li *ngIf="menuItem['UnderMenuId'] == 0 && filterMenuByUnderMenu(menuItem['MenuId']).length == 0">
-                                    <a href="#">{{ menuItem['MenuName'] }}</a>
+                                    <a (click)="navigateTo(menuItem)">{{ menuItem['MenuName'] }}</a>
                                 </li>
                                 <li *ngIf="menuItem['UnderMenuId'] == 0 && filterMenuByUnderMenu(menuItem['MenuId']).length > 0" class="dropdown-submenu">
                                     <a href="#">{{ menuItem['MenuName'] }}</a>
@@ -21,7 +21,7 @@
                                     <ul class="dropdown-menu">
                                         <ng-container *ngFor="let subItem of filterMenuByUnderMenu(menuItem['MenuId']);">
                                             <li>
-                                                <a href="#">{{subItem['MenuName']}}</a>
+                                                <a (click)="navigateTo(menuItem)">{{subItem['MenuName']}}</a>
                                             </li>
                                         </ng-container>
                                     </ul>
