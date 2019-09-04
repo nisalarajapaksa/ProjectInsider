@@ -40,7 +40,7 @@ export class MenuService {
             }));
     }
 
-    ClearMenu() {
+    clearMenu() {
         localStorage.removeItem('currentMenu');
         this.currentMenuSubject.next(null);
     }

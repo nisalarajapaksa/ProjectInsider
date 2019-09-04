@@ -53,6 +53,7 @@ export class TopNavBarComponent implements OnInit {
 
     logout() {
         this.authenticationService.logout();
+        this.menuService.clearMenu()
         this.router.navigate(['/login']);
     }
 }
