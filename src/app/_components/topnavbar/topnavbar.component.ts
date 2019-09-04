@@ -1,9 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
 
-import { User } from '@app/_models';
-import { AuthenticationService } from '@app/_services';
+import { User, Menu } from '@app/_models';
+import { AuthenticationService, MenuService } from '@app/_services';
 
 @Component({
     selector: 'topnavbar',
@@ -15,11 +17,12 @@ export class TopNavBarComponent implements OnInit {
     message: any;
     currentUser: User;
     currentUserSubscription: Subscription;
-    user: User;
+    menu: Menu;
 
     constructor(
         private router: Router,
         private authenticationService: AuthenticationService,
+        private menuService: MenuService
     ) { 
         this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
             this.currentUser = user;
@@ -28,7 +31,24 @@ export class TopNavBarComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.loadMenu();
+        if(this.menu == null){
+            this.menuService.getMenu(this.currentUser.AppAccessID.toString(), this.currentUser.Key.toString(), this.currentUser.CompanyID.toString()).pipe(first())
+                .subscribe(
+                    data => {
+                        this.menu = data as Menu;
+                        console.log(this.menu);
+                    },
+                    error => {
+                        console.log("Menu API Error");
+                    });
+        }
+        
+        
+    }
 
+    private loadMenu() {
+        this.menu = this.menuService.currentMenuValue;
     }
 
     logout() {

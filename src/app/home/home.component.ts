@@ -10,7 +10,6 @@ import { UserService, AuthenticationService, MenuService } from '@app/_services'
 export class HomeComponent implements OnInit, OnDestroy {
     currentUser: User;
     currentUserSubscription: Subscription;
-    user: User;
 
     constructor(
         private router: Router,
@@ -25,17 +24,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.loadAllUsers();
-        // console.log(this.user);
-        //this.menuService.GetMenu(this.user.AppAccessID.toString(), this.user.Key.toString(), this.user.CompanyID.toString()).pipe(first())
-        this.menuService.GetMenu("1", "QJ", "1").pipe(first())
-        .subscribe(
-            data => {
-                console.log(data);
-            },
-            error => {
-                console.log("Menu API Error");
-            });
     }
 
     ngOnDestroy() {
@@ -47,10 +35,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         // this.userService.delete(id).pipe(first()).subscribe(() => {
         //     this.loadAllUsers()
         // });
-    }
-
-    private loadAllUsers() {
-        this.user = this.userService.currentUserValue;
     }
 
     logout() {

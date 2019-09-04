@@ -21,7 +21,7 @@ export class MenuService {
         return this.currentMenuSubject.getValue();
     }
 
-    GetMenu(userID: string, key: string, companyID: string) {
+    getMenu(userID: string, key: string, companyID: string) {
         let menuRequest = new MenuRequest();
         menuRequest.CompanyID = companyID;
         menuRequest.Key = key;
