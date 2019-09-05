@@ -28,7 +28,7 @@ import { DynamicPageComponent } from './dynamic-page';
         LoginComponent,
         ProfileComponent,
 		DynamicPageComponent,
-		MenuItemComponent
+        MenuItemComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -4,4 +4,5 @@ export class MenuResponseObject extends MenuResponseObjectBase{
     ModuleList?: any;
     ModuleName: string;
     UnderMenuId: number;
+    MenuId:number;
 }
