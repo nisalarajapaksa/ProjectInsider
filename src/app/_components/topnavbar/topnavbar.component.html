@@ -9,7 +9,9 @@
         <ng-container *ngFor="let mainItem of menu['responseObjectMod'];">
             <div class="dropdown">
                 <a id="{{ 'dLabel-' + mainItem['ModuleName'] }}" role="button" data-toggle="dropdown"
-                    class="btn btn-link text-white" data-target="#">
+                    class="btn btn-link text-white " [ngClass]="{
+                        'active-menu': mainItem.ModuleId == moduleId
+                      }" data-target="#">
                     {{mainItem['ModuleName']}} <span class="caret"></span>
                 </a>
                 <ul *ngIf="filterMenuByModule(mainItem['ModuleId']).length > 0" class="dropdown-menu multi-level"
@@ -21,12 +23,20 @@
                         </li>
                         <li *ngIf="menuItem['UnderMenuId'] == 0 && filterMenuByUnderMenu(menuItem['MenuId']).length > 0"
                             class="dropdown-submenu">
-                            <a href="#">{{ menuItem['MenuName'] }}</a>
+                            <a 
+                                href="#"
+                                [ngClass]="{
+                                    'active-menu-item': menuItem.ModuleId == moduleId
+                                  }"
+                                >{{ menuItem['MenuName'] }}</a>
 
                             <ul class="dropdown-menu">
                                 <ng-container *ngFor="let subItem of filterMenuByUnderMenu(menuItem['MenuId']);">
                                     <li>
-                                        <a (click)="navigateTo(subItem)">{{subItem['MenuName']}}</a>
+                                        <a (click)="navigateTo(subItem)" 
+                                        [ngClass]="{
+                                            'active-menu-item': subItem.MenuId == menuId
+                                          }">{{subItem['MenuName']}}</a>
                                     </li>
                                 </ng-container>
                             </ul>
@@ -37,38 +47,12 @@
                 </ul>
             </div>
         </ng-container>
-        <!-- <div class="dropdown">
-            <a class="nav-item nav-link text-white" routerLink="/">CRM</a>
-        </div>
-        <div class="dropdown">
-            <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-link text-white" data-target="#">
-                Project <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-                <li><a href="#">Business Relation</a></li>
-                <li><a href="#">Lead & Opportunity</a></li>
 
-                <li class="dropdown-submenu">
-                    <a tabindex="-1" href="#">Activities</a>
-                    <ul class="dropdown-menu">
-                        <li><a tabindex="-1" href="#">Second level</a></li>
-                        <li class="dropdown-submenu">
-                            <a href="#">Even More..</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">3rd level</a></li>
-                                <li><a href="#">3rd level</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Second level</a></li>
-                        <li><a href="#">Second level</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div> -->
         <div class="d-flex item-right">
-            <input class="form-control" type="text" placeholder="Search Menu" id="something" list="somethingelse" (change)="searchInput($event)">
+            <input class="form-control" type="text" placeholder="Search Menu" id="something" list="somethingelse"
+                (change)="searchInput($event)">
             <datalist id="somethingelse" (click)="navigateTo({})">
-                <option *ngFor="let menuItem of menuItemNodes" [ngValue]="menuItem.MenuName" >
+                <option *ngFor="let menuItem of menuItemNodes" [ngValue]="menuItem.MenuName">
                     {{ menuItem.MenuName }}
                 </option>
             </datalist>

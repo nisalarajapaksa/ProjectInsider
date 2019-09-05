@@ -172,3 +172,11 @@ z-index: 3;
 .dropdown-menu a:hover{
     color: black !important;
 }
+
+.active-menu {
+    background-color: #6193d2;
+}
+
+.active-menu-item {
+    color: #1e2022 !important;
+}

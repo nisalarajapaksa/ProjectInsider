@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 // import { BehaviorSubject, Observable } from 'rxjs';
 
 import { User, Menu, MenuResponseObject } from '@app/_models';
@@ -20,16 +20,26 @@ export class TopNavBarComponent implements OnInit {
     menu: Menu;
     menuItemNodes: MenuResponseObject[];
     menuNames: String[];
+    moduleId: Number;
+    menuId: Number;
 
     constructor(
         private router: Router,
         private authenticationService: AuthenticationService,
-        private menuService: MenuService
+        private menuService: MenuService,
+        private route: ActivatedRoute,
     ) {
         this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
             this.currentUser = user;
         });
         this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+
+        this.route.queryParams.subscribe(params => {
+            if (params) {
+                this.moduleId = params.moduleId
+                this.menuId = params.menuId
+            }
+        });
     }
 
     ngOnInit() {
@@ -48,7 +58,7 @@ export class TopNavBarComponent implements OnInit {
                         console.log("Menu API Error");
                     });
         }
-        else{
+        else {
             this.menuItemNodes = this.filterNodeMenuItems();
             this.menuNames = this.menuItemNodes.map(item => item.MenuName)
             // console.log(this.menu);
@@ -56,15 +66,15 @@ export class TopNavBarComponent implements OnInit {
         }
     }
 
-    public filterMenuByModule(moduleId:number):MenuResponseObject[]{
-        let filteredArray = this.menu.responseObject.filter(function(arrayItem) {
+    public filterMenuByModule(moduleId: number): MenuResponseObject[] {
+        let filteredArray = this.menu.responseObject.filter(function (arrayItem) {
             return arrayItem.ModuleId == moduleId;
         });
         return filteredArray;
     }
 
-    public filterMenuByUnderMenu(underMenuId:number):MenuResponseObject[]{
-        let filteredArray = this.menu.responseObject.filter(function(arrayItem) {
+    public filterMenuByUnderMenu(underMenuId: number): MenuResponseObject[] {
+        let filteredArray = this.menu.responseObject.filter(function (arrayItem) {
             return arrayItem.UnderMenuId == underMenuId;
         });
         return filteredArray;
@@ -74,7 +84,7 @@ export class TopNavBarComponent implements OnInit {
         this.menu = this.menuService.currentMenuValue;
     }
 
-    private filterNodeMenuItems():MenuResponseObject[]{
+    private filterNodeMenuItems(): MenuResponseObject[] {
         let filteredArray = this.menu.responseObject.filter((arrayItem) => {
             return this.filterMenuByUnderMenu(arrayItem.MenuId).length == 0;
         });
