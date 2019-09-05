@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { User } from '@app/_models';
-import { ENDPOINTS } from '../_constants/endpoints'; // TODO: User @
+import { ENDPOINTS, RESPONSE_CODE } from '../_constants'; // TODO: User @
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -31,13 +31,13 @@ export class AuthenticationService {
         })
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
-                if (user) {
+                if (user && user.responseCode == RESPONSE_CODE.loginSuccess) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user['responseObject'][0]));
                     this.currentUserSubject.next(user['responseObject'][0]);
                 }
 
-                return user['responseObject'][0];
+                return user;
             }));
     }
 

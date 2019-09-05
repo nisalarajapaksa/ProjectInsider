@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AlertService, AuthenticationService } from '@app/_services';
+import { RESPONSE_CODE } from '../_constants'
 
 @Component({templateUrl: 'login.component.html'})
 export class LoginComponent implements OnInit {
@@ -27,8 +28,8 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.loginForm = this.formBuilder.group({
-            username: ['1001', Validators.required],
-            password: ['3SL', Validators.required],
+            username: ['', Validators.required],
+            password: ['', Validators.required],
             companycode: ['', Validators.required]
         });
 
@@ -52,7 +53,15 @@ export class LoginComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
-                    this.router.navigate([this.returnUrl]);
+                    if(data.responseCode == RESPONSE_CODE.loginSuccess) {
+                        this.alertService.success(data.responseMessage);
+                        this.router.navigate([this.returnUrl]);
+                    } else {
+                        this.alertService.error(data.responseMessage);
+                    }
+
+                    this.loading = false;
+                    
                 },
                 error => {
                     this.alertService.error(error);
