@@ -26,7 +26,7 @@
                             <ul class="dropdown-menu">
                                 <ng-container *ngFor="let subItem of filterMenuByUnderMenu(menuItem['MenuId']);">
                                     <li>
-                                        <a (click)="navigateTo(menuItem)">{{subItem['MenuName']}}</a>
+                                        <a (click)="navigateTo(subItem)">{{subItem['MenuName']}}</a>
                                     </li>
                                 </ng-container>
                             </ul>
