@@ -169,6 +169,6 @@ z-index: 3;
     padding: 10px;
 }
 
-a:hover{
+.dropdown-menu a:hover{
     color: black !important;
 }
