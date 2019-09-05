@@ -31,13 +31,17 @@ export class DynamicPageComponent implements OnInit {
 
     setPageData() {
         this.menu = this.menuService.currentMenuValue as Menu;
-        this.menu['responseObject'].map(item => {
-            // console.log('item', this.menuId)
-            if (item.MenuId == this.menuId) {
-                // console.log('item.MenuName', item)
-                this.pageTitle = item.MenuName
-                return 
-            }
-        })
+
+        if(this.menu['responseObject']) {
+            this.menu['responseObject'].map(item => {
+                if (item.MenuId == this.menuId) {
+                    // console.log('item.MenuName', item)
+                    this.pageTitle = item.MenuName
+                    return 
+                }
+            })
+        } else {
+
+        }
     }
 }
