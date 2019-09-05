@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AlertService, AuthenticationService } from '@app/_services';
-import { RESPONSE_CODE } from '../_constants'
+import { RESPONSE_CODE } from '../_constants';
 
 @Component({templateUrl: 'login.component.html'})
 export class LoginComponent implements OnInit {

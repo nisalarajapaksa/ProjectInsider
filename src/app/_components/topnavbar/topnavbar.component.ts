@@ -43,8 +43,11 @@ export class TopNavBarComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.loadMenu();
-        if (this.menu == null) {
+        if(!this.currentUser) {
+            return
+        }
+
+        if (this.menu == undefined) {
             this.menuService.getMenu(this.currentUser.AppAccessID.toString(), this.currentUser.Key.toString(), this.currentUser.CompanyID.toString()).pipe(first())
                 .subscribe(
                     data => {
