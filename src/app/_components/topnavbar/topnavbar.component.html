@@ -68,8 +68,8 @@
         <div class="d-flex item-right">
             <input class="form-control" type="text" placeholder="Search Menu" id="something" list="somethingelse">
             <datalist id="somethingelse">
-                <option value="Something"></option>
-                <option value="Something Else"></option>
+                <option *ngFor="let name of menuNames" [value]="name"></option>
+                <!-- <option value="Something Else"></option>
                 <option value="Another One"></option>
                 <option value="Alpha"></option>
                 <option value="Bravo"></option>
@@ -77,7 +77,7 @@
                 <option value="Delta"></option>
                 <option value="Echo"></option>
                 <option value="Foxtrot"></option>
-                <option value="Gamma"></option>
+                <option value="Gamma"></option> -->
             </datalist>
             <span>Results</span>
             <a class="nav-item nav-link text-white" (click)="logout()">Logout</a>

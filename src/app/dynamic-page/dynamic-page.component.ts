@@ -11,6 +11,7 @@ export class DynamicPageComponent implements OnInit {
     currentUserSubscription: Subscription;
     menu: Menu;
     pageTitle: String;
+    menuId: Number;
     moduleId: Number;
 
     constructor(
@@ -18,7 +19,8 @@ export class DynamicPageComponent implements OnInit {
         private menuService: MenuService
     ) {
         this.route.queryParams.subscribe(params => {
-            this.moduleId = params.moduleId
+            this.moduleId = params.moduleId,
+            this.menuId = params.menuId,
             this.setPageData()
         });
     }
@@ -29,9 +31,11 @@ export class DynamicPageComponent implements OnInit {
 
     setPageData() {
         this.menu = this.menuService.currentMenuValue as Menu;
-        this.menu['responseObjectMod'].map(item => {
-            if (item.ModuleId == this.moduleId) {
-                this.pageTitle = item.ModuleName
+        this.menu['responseObject'].map(item => {
+            // console.log('item', this.menuId)
+            if (item.MenuId == this.menuId) {
+                // console.log('item.MenuName', item)
+                this.pageTitle = item.MenuName
                 return 
             }
         })

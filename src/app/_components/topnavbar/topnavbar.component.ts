@@ -19,6 +19,7 @@ export class TopNavBarComponent implements OnInit {
     currentUserSubscription: Subscription;
     menu: Menu;
     menuItemNodes: MenuResponseObject[];
+    menuNames: String[];
 
     constructor(
         private router: Router,
@@ -39,8 +40,9 @@ export class TopNavBarComponent implements OnInit {
                     data => {
                         this.menu = data as Menu;
                         this.menuItemNodes = this.filterNodeMenuItems();
-                        console.log(this.menu);
-                        console.log(this.menuItemNodes);
+                        // console.log(this.menu);
+                        // console.log(this.menuItemNodes);
+                        this.menuNames = this.menuItemNodes.map(item => item.MenuName)
                     },
                     error => {
                         console.log("Menu API Error");
@@ -48,8 +50,9 @@ export class TopNavBarComponent implements OnInit {
         }
         else{
             this.menuItemNodes = this.filterNodeMenuItems();
-            console.log(this.menu);
-            console.log(this.menuItemNodes);
+            this.menuNames = this.menuItemNodes.map(item => item.MenuName)
+            // console.log(this.menu);
+            // console.log('menuItemNodes', this.menuItemNodes.map(item => item.MenuName));
         }
     }
 
@@ -85,6 +88,6 @@ export class TopNavBarComponent implements OnInit {
     }
 
     navigateTo(item) {
-        this.router.navigate(['/dynamic'], { queryParams: { moduleId: item.ModuleId } });
+        this.router.navigate(['/dynamic'], { queryParams: { moduleId: item.ModuleId, menuId: item.MenuId } });
     }
 }
