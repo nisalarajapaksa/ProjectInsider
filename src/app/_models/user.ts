@@ -1,11 +1,4 @@
 ﻿export class User {
-    id: number;
-    username: string;
-    password: string;
-    firstName: string;
-    lastName: string;
-    token: string;
-    // User Fields
     Action?: any;
     AppAccessID: number;
     AppAccessSessionID: number;
