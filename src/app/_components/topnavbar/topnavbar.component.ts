@@ -18,6 +18,7 @@ export class TopNavBarComponent implements OnInit {
     currentUser: User;
     currentUserSubscription: Subscription;
     menu: Menu;
+    menuItemNodes: MenuResponseObject[];
 
     constructor(
         private router: Router,
@@ -37,24 +38,30 @@ export class TopNavBarComponent implements OnInit {
                 .subscribe(
                     data => {
                         this.menu = data as Menu;
+                        this.menuItemNodes = this.filterNodeMenuItems();
                         console.log(this.menu);
+                        console.log(this.menuItemNodes);
                     },
                     error => {
                         console.log("Menu API Error");
                     });
         }
-        console.log(this.menu);
+        else{
+            this.menuItemNodes = this.filterNodeMenuItems();
+            console.log(this.menu);
+            console.log(this.menuItemNodes);
+        }
     }
 
     public filterMenuByModule(moduleId:number):MenuResponseObject[]{
-        var filteredArray = this.menu.responseObject.filter(function(arrayItem) {
+        let filteredArray = this.menu.responseObject.filter(function(arrayItem) {
             return arrayItem.ModuleId == moduleId;
         });
         return filteredArray;
     }
 
     public filterMenuByUnderMenu(underMenuId:number):MenuResponseObject[]{
-        var filteredArray = this.menu.responseObject.filter(function(arrayItem) {
+        let filteredArray = this.menu.responseObject.filter(function(arrayItem) {
             return arrayItem.UnderMenuId == underMenuId;
         });
         return filteredArray;
@@ -62,6 +69,13 @@ export class TopNavBarComponent implements OnInit {
 
     private loadMenu() {
         this.menu = this.menuService.currentMenuValue;
+    }
+
+    private filterNodeMenuItems():MenuResponseObject[]{
+        let filteredArray = this.menu.responseObject.filter((arrayItem) => {
+            return this.filterMenuByUnderMenu(arrayItem.MenuId).length == 0;
+        });
+        return filteredArray;
     }
 
     logout() {
