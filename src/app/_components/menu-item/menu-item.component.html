@@ -1,0 +1,11 @@
+<ul class="dropdown-menu">
+<ng-container *ngFor="let subItem of subMenuItems;">
+        <li *ngIf="subItem['UnderMenuId'] == superId && filterMenuByUnderMenu(subMenuItems, subItem['MenuId']).length == 0">
+            <a (click)="navigateTo(menuItem)">{{ subItem['MenuName'] }}</a>
+        </li>
+        <li *ngIf="subItem['UnderMenuId'] == superId && filterMenuByUnderMenu(subMenuItems, subItem['MenuId']).length > 0" class="dropdown-submenu">
+            <a href="#">{{ subItem['MenuName'] }}</a>   
+            <menu-item [subMenuItems]="filterMenuByModule(subMenuItems, subItem['ModuleId'])" [superId]="subItem['MenuId']"></menu-item>
+            </li>
+</ng-container>
+</ul>

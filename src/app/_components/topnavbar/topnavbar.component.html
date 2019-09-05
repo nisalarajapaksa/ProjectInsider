@@ -1,0 +1,62 @@
+<!-- nav -->
+<nav class="navbar navbar-expand navbar-dark bg-dark d-flex flex-row flex-column align-items-start bg-gradient"
+    *ngIf="currentUser && menu">
+    <div class="d-flex full-width">
+        <div class="brand-logo" routerLink="/">
+            <label>3slogics Pvt. Ltd.</label>
+        </div>
+        <div class="navbar-nav ml-5"></div>
+        <ng-container *ngFor="let mainItem of menu['responseObjectMod'];">
+            <div class="dropdown">
+                <a id="{{ 'dLabel-' + mainItem['ModuleName'] }}" role="button" data-toggle="dropdown"
+                    class="btn btn-link text-white " [ngClass]="{
+                        'active-menu': mainItem.ModuleId == moduleId
+                      }" data-target="#">
+                    {{mainItem['ModuleName']}} <span class="caret"></span>
+                </a>
+                <ul *ngIf="filterMenuByModule(mainItem['ModuleId']).length > 0" class="dropdown-menu multi-level"
+                    role="menu" aria-labelledby="dropdownMenu">
+                    <ng-container *ngFor="let menuItem of filterMenuByModule(mainItem['ModuleId']);">
+                        <li
+                            *ngIf="menuItem['UnderMenuId'] == 0 && filterMenuByUnderMenu(menuItem['MenuId']).length == 0">
+                            <a (click)="navigateTo(menuItem)">{{ menuItem['MenuName'] }}</a>
+                        </li>
+                        <li *ngIf="menuItem['UnderMenuId'] == 0 && filterMenuByUnderMenu(menuItem['MenuId']).length > 0"
+                            class="dropdown-submenu">
+                            <a 
+                                href="#"
+                                [ngClass]="{
+                                    'active-menu-item': menuItem.ModuleId == moduleId
+                                  }"
+                                >{{ menuItem['MenuName'] }}</a>
+
+                            <ul class="dropdown-menu">
+                                <ng-container *ngFor="let subItem of filterMenuByUnderMenu(menuItem['MenuId']);">
+                                    <li>
+                                        <a (click)="navigateTo(subItem)" 
+                                        [ngClass]="{
+                                            'active-menu-item': subItem.MenuId == menuId
+                                          }">{{subItem['MenuName']}}</a>
+                                    </li>
+                                </ng-container>
+                            </ul>
+                            <!-- TODO: Uncomment to Extend for multiple -->
+                            <!-- <menu-item #menu [subMenuItems]="filterMenuByModule(mainItem['ModuleId'])" [superId]="menuItem['MenuId']"></menu-item> -->
+                        </li>
+                    </ng-container>
+                </ul>
+            </div>
+        </ng-container>
+
+        <div class="d-flex item-right">
+            <input class="form-control" type="text" placeholder="Search Menu" id="something" list="somethingelse"
+                (change)="searchInput($event)">
+            <datalist id="somethingelse" (click)="navigateTo({})">
+                <option *ngFor="let menuItem of menuItemNodes" [ngValue]="menuItem.MenuName">
+                    {{ menuItem.MenuName }}
+                </option>
+            </datalist>
+            <a class="nav-item nav-link text-white" (click)="logout()">Logout</a>
+        </div>
+    </div>
+</nav>

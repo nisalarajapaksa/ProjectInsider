@@ -1,0 +1,222 @@
+/* You can add global styles to this file, and also import other style files */
+/* Login Styles */
+ html, body{
+    height: 100%;
+    font-family: "Poppins", Helvetica, Arial, sans-serif;
+    color: #1e2022;
+ }
+.login-wrapper{
+    height: 100%;
+    margin-bottom: 0;
+    background-image: linear-gradient(0deg, rgba(55, 125, 255, 0.05) 0%, transparent 100%);
+    background-repeat: repeat-x;
+    background: #E1E9EC;
+}
+.inner-login{
+    box-shadow: 0 0 1.25rem rgba(31,45,61,.08)!important;
+    background: rgb(246, 249, 251);
+    padding: 40px;
+    border-radius: 5px;
+    margin-top: 4rem;
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    padding-top: 40px;
+    /* border-radius: 5px; */
+    
+}
+.middle-align{
+margin: 0 auto;
+z-index: 3;
+}
+.logo-wrap img{
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 1rem + 2px);
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #1e2022;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #d5dae2;
+    border-radius: 0.3125rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.form-control:focus {
+    box-shadow: 0 0 10px rgba(55, 125, 255, 0.1);
+    border-color: rgba(55, 125, 255, 0.5);
+}
+.form-control:focus {
+    color: #1e2022;
+
+}
+.form-group label{
+    font-size: 0.9rem;
+    color: #6b6b6b;
+    margin-bottom: 0;
+
+}
+.bg-gradient{
+    background: linear-gradient(154deg,#008fe2 0,#00b29c 100%);
+}
+.text-1 {
+    font-size: 25px;
+    text-transform: uppercase;
+    color: #03264e;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+.btm-bg{
+    background: #075bf3;
+    height: 300px;
+    position: absolute;
+    bottom: 0;
+    z-index: 0;
+    width: 100%;
+}
+.brand-logo{
+    display: flex;
+}
+.brand-logo label{
+    color: #fff;
+    margin-bottom: 0;
+    font-size: 1.5rem;
+}
+.dropdown-menu{
+    padding: 0;
+    margin: .05rem 0 0;
+    background: #1bb394;
+    border-radius:0; 
+    min-width: 200px;
+}
+.dropdown-menu li a{
+    color: #fff;
+    padding: 10px;
+}
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+    margin-left: 0px;
+    border-radius:0; 
+   
+}
+.dropdown-submenu>a:after {
+    
+    border-left-color: #fff !important;
+    margin-top: 9px !important;
+    margin-right: 7px !important;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+.dropdown-submenu .dropdown-menu li, .dropdown-menu li{
+    padding: 5px 0px;
+    border-bottom: 1px solid #ccc;
+}
+.dropdown-menu li a:hover{
+    text-decoration: none;
+}
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+}
+.full-width{
+    width: 100%;
+}
+.item-right{
+    justify-content: flex-end;
+    margin: 0 0 0 auto;
+}
+.dropdown:hover .multi-level{
+    display: block;
+}
+
+.dropdown-submenu .dropdown-menu li a{
+    color: #fff;
+    padding: 10px;
+}
+
+.dropdown-menu a:hover{
+    color: black !important;
+}
+
+.active-menu {
+    background-color: #6193d2;
+}
+
+.active-menu-item {
+    color: #1e2022 !important;
+}
+
+a {
+    cursor: pointer
+}
+
+.loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    margin: -75px 0 0 -75px;
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid #3498db;
+    width: 50px;
+    height: 50px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
