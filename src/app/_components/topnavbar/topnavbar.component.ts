@@ -102,6 +102,8 @@ export class TopNavBarComponent implements OnInit {
     }
 
     searchInput(e) {
-        this.navigateTo(this.menuItemNodes.find(item => item.MenuName == e.target.value))
+        if(e.target.value) {
+            this.navigateTo(this.menuItemNodes.find(item => item.MenuName == e.target.value))
+        }
     }
 }
