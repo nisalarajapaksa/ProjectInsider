@@ -21,14 +21,14 @@ export class MenuItemComponent implements OnInit {
     }
 
     public filterMenuByModule(responseObject: MenuResponseObject[], moduleId: number):MenuResponseObject[]{
-        var filteredArray = responseObject.filter(function(arrayItem) {
+        let filteredArray = responseObject.filter(function(arrayItem) {
             return arrayItem.ModuleId == moduleId;
         });
         return filteredArray;
     }
 
     public filterMenuByUnderMenu(responseObject: MenuResponseObject[], underMenuId:number):MenuResponseObject[]{
-        var filteredArray = responseObject.filter(function(arrayItem) {
+        let filteredArray = responseObject.filter(function(arrayItem) {
             return arrayItem.UnderMenuId == underMenuId;
         });
         return filteredArray;
