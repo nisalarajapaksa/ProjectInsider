@@ -90,4 +90,8 @@ export class TopNavBarComponent implements OnInit {
     navigateTo(item) {
         this.router.navigate(['/dynamic'], { queryParams: { moduleId: item.ModuleId, menuId: item.MenuId } });
     }
+
+    searchInput(e) {
+        this.navigateTo(this.menuItemNodes.find(item => item.MenuName == e.target.value))
+    }
 }
