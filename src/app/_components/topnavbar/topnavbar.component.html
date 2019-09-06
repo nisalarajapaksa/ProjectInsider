@@ -1,12 +1,17 @@
 <!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark d-flex flex-row flex-column align-items-start bg-gradient"
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex flex-row flex-column align-items-start bg-gradient"
     *ngIf="currentUser && menu">
-    <div class="d-flex full-width">
+    <div class="d-flex full-width align-items-center flex-wrap">
         <div class="brand-logo" routerLink="/">
             <label>3slogics Pvt. Ltd.</label>
         </div>
+        <button class="navbar-toggler item-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         <div class="navbar-nav ml-5"></div>
-        <ng-container *ngFor="let mainItem of menu['responseObjectMod'];">
+        <div id="navbarSupportedContent" class="navbar-collapse collapse">
+        <ng-container *ngFor="let mainItem of menu['responseObjectMod'];" >
+                   
             <div class="dropdown">
                 <a id="{{ 'dLabel-' + mainItem['ModuleName'] }}" role="button" data-toggle="dropdown"
                     class="btn btn-link text-white " [ngClass]="{
@@ -47,8 +52,8 @@
                 </ul>
             </div>
         </ng-container>
-
-        <div class="d-flex item-right">
+   
+        <div class="d-flex item-right row-reverse">
             <input class="form-control" type="text" placeholder="Search Menu" id="something" list="somethingelse"
                 (change)="searchInput($event)">
             <datalist id="somethingelse" (click)="navigateTo({})">
@@ -58,5 +63,6 @@
             </datalist>
             <a class="nav-item nav-link text-white" (click)="logout()">Logout</a>
         </div>
+    </div>
     </div>
 </nav>
